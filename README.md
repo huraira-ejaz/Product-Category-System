@@ -19,3 +19,5 @@ This project is a simple Product Category System developed using ASP.NET MVC. It
   - HTML
   - CSS
   - JavaScript
+
+Feel free to explore and contribute to this open-source Product-Category-System project!
