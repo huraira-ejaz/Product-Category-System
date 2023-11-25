@@ -1,0 +1,16 @@
+﻿@model Product
+
+<h1>Delete Product</h1>
+
+<div>
+    <h4>Product ID: @Model.Id</h4>
+    <h4>Name: @Model.Name</h4>
+    <h4>Description: @Model.Description</h4>
+    <h4>Price: @Model.Price</h4>
+</div>
+
+<form asp-action="Delete" asp-route-id="@Model.Id">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index">Cancel</a>
+</form>
+

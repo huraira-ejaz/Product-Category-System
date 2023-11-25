@@ -1,0 +1,49 @@
+﻿@model Product
+
+@{
+    if (ViewBag.ErrorOccurred != null && ViewBag.ErrorOccurred)
+    {
+        <script>
+
+            alert('No categories available!');
+            window.location.href = '@Url.Action("Index", "Category")';
+
+
+        </script>
+
+
+    }
+}
+
+
+
+
+<h1>Create a Product</h1>
+
+<form asp-action="Create" >
+    <div class="form-group">
+        <label for="Name">Name:</label>
+        <input type="text" class="form-control" id="Name" name="Name" value="@Model?.Name" required style="width: 180px;">
+    </div>
+    <div class="form-group">
+        <label for="Description">Description:</label>
+        <input type="text" class="form-control" id="Description" name="Description" value="@Model?.Description" required style="width: 180px;">
+    </div>
+    <div class="form-group">
+        <label for="Price">Price:</label>
+        <input type="text" class="form-control" id="Price" name="Price" pattern="^\d{1,10}(\.\d{1,2})?$" title="Please enter a numeric value with up to 10 digits and optionally up to 2 decimal places" value="@Model?.Price" required style="width: 180px;">
+    </div>
+    <div class="form-group">
+        <label for="CategoryIds">Available Categories:</label>
+        <select class="form-control" id="CategoryIds" name="CategoryIds" required style="width: 180px;">
+            @foreach (var category in ViewBag.Categories)
+            {
+                var isSelected = Model.CategoryIds.Contains(category.Id);
+                <option value="@category.Id" selected="@(isSelected ? "selected" : null)">@category.Name</option>
+            }
+        </select>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+</form>
